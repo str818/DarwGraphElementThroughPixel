@@ -1,0 +1,9 @@
+C:\Users\JD\Desktop\CGHomework\CGHomework\bin\Debug\CGHomework.exe.config
+C:\Users\JD\Desktop\CGHomework\CGHomework\bin\Debug\CGHomework.exe
+C:\Users\JD\Desktop\CGHomework\CGHomework\bin\Debug\CGHomework.pdb
+C:\Users\JD\Desktop\CGHomework\CGHomework\obj\Debug\CGHomework.csprojResolveAssemblyReference.cache
+C:\Users\JD\Desktop\CGHomework\CGHomework\obj\Debug\CGHomework.Properties.Resources.resources
+C:\Users\JD\Desktop\CGHomework\CGHomework\obj\Debug\CGHomework.csproj.GenerateResource.Cache
+C:\Users\JD\Desktop\CGHomework\CGHomework\obj\Debug\CGHomework.exe
+C:\Users\JD\Desktop\CGHomework\CGHomework\obj\Debug\CGHomework.pdb
+C:\Users\JD\Desktop\CGHomework\CGHomework\obj\Debug\CGHomework.MyForm.resources
