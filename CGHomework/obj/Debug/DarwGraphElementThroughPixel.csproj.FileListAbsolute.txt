@@ -7,3 +7,12 @@ E:\Github\CGHomework\CGHomework\obj\Debug\DarwGraphElementThroughPixel.csprojRes
 E:\Github\CGHomework\CGHomework\obj\Debug\CGHomework.MyForm.resources
 E:\Github\CGHomework\CGHomework\obj\Debug\CGHomework.Properties.Resources.resources
 E:\Github\CGHomework\CGHomework\obj\Debug\DarwGraphElementThroughPixel.csproj.GenerateResource.Cache
+E:\Github\DarwGraphElementThroughPixel\CGHomework\bin\Debug\CGHomework.exe.config
+E:\Github\DarwGraphElementThroughPixel\CGHomework\obj\Debug\CGHomework.exe
+E:\Github\DarwGraphElementThroughPixel\CGHomework\obj\Debug\CGHomework.pdb
+E:\Github\DarwGraphElementThroughPixel\CGHomework\obj\Debug\DarwGraphElementThroughPixel.csprojResolveAssemblyReference.cache
+E:\Github\DarwGraphElementThroughPixel\CGHomework\obj\Debug\CGHomework.MyForm.resources
+E:\Github\DarwGraphElementThroughPixel\CGHomework\obj\Debug\CGHomework.Properties.Resources.resources
+E:\Github\DarwGraphElementThroughPixel\CGHomework\obj\Debug\DarwGraphElementThroughPixel.csproj.GenerateResource.Cache
+E:\Github\DarwGraphElementThroughPixel\CGHomework\bin\Debug\CGHomework.exe
+E:\Github\DarwGraphElementThroughPixel\CGHomework\bin\Debug\CGHomework.pdb

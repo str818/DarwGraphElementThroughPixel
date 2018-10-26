@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace CGHomework
 {
@@ -168,16 +170,45 @@ namespace CGHomework
 
         }
 
+        //绘制文字
+        public void DrawString(String massage,int x, int y)
+        {
+            FileStream fsHzk16 = new FileStream("hzk16h", FileMode.Open);
+
+            for(int i = 0; i < massage.Length; i++)
+            {
+                string s = massage.Substring(i, 1);
+                int[] key = { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 };
+                byte[] bMsg = new byte[32];
+                byte[] bytes = Encoding.GetEncoding("GB2312").GetBytes(s.ToCharArray());
+                int offset = 32 * (94 * (bytes[0] - 0xA1) + bytes[1] - 0xA1);
+                fsHzk16.Seek(offset, SeekOrigin.Begin);
+                fsHzk16.Read(bMsg, 0, 32);
+
+                for(int k = 0; k < 16; k++)
+                {
+                    for(int j = 0; j < 2; j++)
+                    {
+                        for(int d = 0; d < 8; d++)
+                        {
+                            int flag = bMsg[k * 2 + j] & key[d%8];
+                            if (flag != 0)
+                            {
+                                setPixel((j * 8) + d + i * 16 + x, k + y);
+                            }  
+                        }
+                    }
+                }
+            }
+
+            fsHzk16.Close();
+
+        }
+
         //绘制像素点
         public void setPixel(int x, int y)
         {
             SetPixel(hDC, x, y, 0);
-        }
-
-        //绘制字符
-        public void DrawString()
-        {
-
         }
 
         [DllImport("Gdi32.dll ")]

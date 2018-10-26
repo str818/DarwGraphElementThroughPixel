@@ -55,6 +55,10 @@
             this.ArcX = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tabEllipseArc = new System.Windows.Forms.TabPage();
+            this.ESweepAngle = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.EStartAngle = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.DrawEllispArc = new System.Windows.Forms.Button();
             this.B = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -65,16 +69,22 @@
             this.label13 = new System.Windows.Forms.Label();
             this.CenterX = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.tabStr = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
             this.PaintPanel = new System.Windows.Forms.Panel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.ESweepAngle = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.EStartAngle = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.Str = new System.Windows.Forms.TextBox();
+            this.DrawStr = new System.Windows.Forms.Button();
+            this.StrY = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.StrX = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.TabControl.SuspendLayout();
             this.tabLine.SuspendLayout();
             this.tabCircleArc.SuspendLayout();
             this.tabEllipseArc.SuspendLayout();
+            this.tabStr.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl
@@ -83,6 +93,7 @@
             this.TabControl.Controls.Add(this.tabLine);
             this.TabControl.Controls.Add(this.tabCircleArc);
             this.TabControl.Controls.Add(this.tabEllipseArc);
+            this.TabControl.Controls.Add(this.tabStr);
             this.TabControl.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Margin = new System.Windows.Forms.Padding(0);
@@ -348,6 +359,38 @@
             this.tabEllipseArc.TabIndex = 2;
             this.tabEllipseArc.Text = "椭圆弧";
             // 
+            // ESweepAngle
+            // 
+            this.ESweepAngle.Location = new System.Drawing.Point(492, 17);
+            this.ESweepAngle.Name = "ESweepAngle";
+            this.ESweepAngle.Size = new System.Drawing.Size(27, 21);
+            this.ESweepAngle.TabIndex = 24;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(428, 19);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 12);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "跨越角度：";
+            // 
+            // EStartAngle
+            // 
+            this.EStartAngle.Location = new System.Drawing.Point(395, 17);
+            this.EStartAngle.Name = "EStartAngle";
+            this.EStartAngle.Size = new System.Drawing.Size(27, 21);
+            this.EStartAngle.TabIndex = 22;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(332, 19);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 12);
+            this.label18.TabIndex = 21;
+            this.label18.Text = "起始角度：";
+            // 
             // DrawEllispArc
             // 
             this.DrawEllispArc.Location = new System.Drawing.Point(540, 12);
@@ -431,6 +474,33 @@
             this.label14.TabIndex = 11;
             this.label14.Text = "中心位置：";
             // 
+            // tabStr
+            // 
+            this.tabStr.BackColor = System.Drawing.Color.Silver;
+            this.tabStr.Controls.Add(this.StrY);
+            this.tabStr.Controls.Add(this.label20);
+            this.tabStr.Controls.Add(this.label21);
+            this.tabStr.Controls.Add(this.StrX);
+            this.tabStr.Controls.Add(this.label22);
+            this.tabStr.Controls.Add(this.DrawStr);
+            this.tabStr.Controls.Add(this.Str);
+            this.tabStr.Controls.Add(this.label19);
+            this.tabStr.Location = new System.Drawing.Point(4, 22);
+            this.tabStr.Name = "tabStr";
+            this.tabStr.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStr.Size = new System.Drawing.Size(659, 54);
+            this.tabStr.TabIndex = 3;
+            this.tabStr.Text = " 文字";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(18, 21);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(65, 12);
+            this.label19.TabIndex = 12;
+            this.label19.Text = "输入文字：";
+            // 
             // PaintPanel
             // 
             this.PaintPanel.BackColor = System.Drawing.SystemColors.Window;
@@ -440,37 +510,63 @@
             this.PaintPanel.Size = new System.Drawing.Size(659, 353);
             this.PaintPanel.TabIndex = 3;
             // 
-            // ESweepAngle
+            // Str
             // 
-            this.ESweepAngle.Location = new System.Drawing.Point(492, 17);
-            this.ESweepAngle.Name = "ESweepAngle";
-            this.ESweepAngle.Size = new System.Drawing.Size(27, 21);
-            this.ESweepAngle.TabIndex = 24;
+            this.Str.Location = new System.Drawing.Point(84, 17);
+            this.Str.Name = "Str";
+            this.Str.Size = new System.Drawing.Size(90, 21);
+            this.Str.TabIndex = 13;
             // 
-            // label17
+            // DrawStr
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(428, 19);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 12);
-            this.label17.TabIndex = 23;
-            this.label17.Text = "跨越角度：";
+            this.DrawStr.Location = new System.Drawing.Point(540, 12);
+            this.DrawStr.Name = "DrawStr";
+            this.DrawStr.Size = new System.Drawing.Size(70, 30);
+            this.DrawStr.TabIndex = 14;
+            this.DrawStr.Text = "绘 制";
+            this.DrawStr.UseVisualStyleBackColor = true;
+            this.DrawStr.Click += new System.EventHandler(this.DrawStr_Click);
             // 
-            // EStartAngle
+            // StrY
             // 
-            this.EStartAngle.Location = new System.Drawing.Point(395, 17);
-            this.EStartAngle.Name = "EStartAngle";
-            this.EStartAngle.Size = new System.Drawing.Size(27, 21);
-            this.EStartAngle.TabIndex = 22;
+            this.StrY.Location = new System.Drawing.Point(311, 17);
+            this.StrY.Name = "StrY";
+            this.StrY.Size = new System.Drawing.Size(27, 21);
+            this.StrY.TabIndex = 19;
             // 
-            // label18
+            // label20
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(332, 19);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(65, 12);
-            this.label18.TabIndex = 21;
-            this.label18.Text = "起始角度：";
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(294, 20);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(11, 12);
+            this.label20.TabIndex = 18;
+            this.label20.Text = "y";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(248, 20);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(11, 12);
+            this.label21.TabIndex = 17;
+            this.label21.Text = "x";
+            // 
+            // StrX
+            // 
+            this.StrX.Location = new System.Drawing.Point(261, 17);
+            this.StrX.Name = "StrX";
+            this.StrX.Size = new System.Drawing.Size(27, 21);
+            this.StrX.TabIndex = 16;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(188, 20);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(65, 12);
+            this.label22.TabIndex = 15;
+            this.label22.Text = "文字位置：";
             // 
             // MyForm
             // 
@@ -488,6 +584,8 @@
             this.tabCircleArc.PerformLayout();
             this.tabEllipseArc.ResumeLayout(false);
             this.tabEllipseArc.PerformLayout();
+            this.tabStr.ResumeLayout(false);
+            this.tabStr.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -537,6 +635,15 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox EStartAngle;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TabPage tabStr;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox StrY;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox StrX;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button DrawStr;
+        private System.Windows.Forms.TextBox Str;
     }
 }
 

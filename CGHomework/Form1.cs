@@ -22,11 +22,13 @@ namespace CGHomework
             InitializeComponent();
             Graphics g = PaintPanel.CreateGraphics();
             gl = new GraphicsLibrary(g.GetHdc());//new GraphicsLibrary(e.Graphics.GetHdc());
+ 
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+
         }
 
         //直线绘制按钮
@@ -90,6 +92,24 @@ namespace CGHomework
             ESweepAngle.Text = "";
             A.Text = "";
             B.Text = "";
+        }
+
+        //文字绘制
+        private void DrawStr_Click(object sender, EventArgs e)
+        {
+            //获取文字数据
+            String s = Str.Text;
+            int x = int.Parse(StrX.Text.ToString());
+            int y = int.Parse(StrY.Text.ToString());
+
+            //绘制文字
+            gl.DrawString(s, x, y);
+
+            //清空输入框
+            Str.Text = "";
+            StrX.Text = "";
+            StrY.Text = "";
+
         }
     }
 }
