@@ -152,6 +152,22 @@ namespace CGHomework
             setPixel(xc - x, yc - y);
         }
 
+        //绘制椭圆弧
+        public void DrawEllipseArc(int centerX, int centerY, int a, int b, int startAngle, int sweepAngle)
+        {
+            double startA = startAngle * Math.PI / 180;
+            double sweepA = sweepAngle * Math.PI / 180;
+
+            double span = 0.3 * Math.PI / 180;
+            for (double i = startA; i <= startA + sweepA; i += span)
+            {
+                int x = (int)(centerX + a * Math.Cos(i - Math.PI / 2));
+                int y = (int)(centerY + b * Math.Sin(i - Math.PI / 2));
+                setPixel(x, y);
+            }
+
+        }
+
         //绘制像素点
         public void setPixel(int x, int y)
         {

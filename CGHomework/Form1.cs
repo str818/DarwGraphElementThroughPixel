@@ -55,11 +55,11 @@ namespace CGHomework
             int xCenter = int.Parse(ArcX.Text.ToString());
             int yCenter = int.Parse(ArcY.Text.ToString());
             int startAngle = int.Parse(StartAngle.Text.ToString());
-            int endAngle = int.Parse(SweepAngle.Text.ToString());
+            int sweepAngle = int.Parse(SweepAngle.Text.ToString());
             int r = int.Parse(Radius.Text.ToString());
 
             //绘制圆弧
-            gl.DrawArc(xCenter, yCenter, startAngle, endAngle, r);
+            gl.DrawArc(xCenter, yCenter, startAngle, sweepAngle, r);
 
             //清空输入框
             ArcX.Text = "";
@@ -69,9 +69,27 @@ namespace CGHomework
             Radius.Text = "";
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        //椭圆弧绘制按钮
+        private void DrawEllispArc_Click(object sender, EventArgs e)
         {
+            //获取椭圆弧数据
+            int xCenter = int.Parse(CenterX.Text.ToString());
+            int yCenter = int.Parse(CenterY.Text.ToString());
+            int startAngle = int.Parse(EStartAngle.Text.ToString());
+            int sweepAngle = int.Parse(ESweepAngle.Text.ToString());
+            int a = int.Parse(A.Text.ToString());
+            int b = int.Parse(B.Text.ToString());
 
+            //绘制椭圆弧
+            gl.DrawEllipseArc(xCenter, yCenter, a, b, startAngle, sweepAngle);
+
+            //清空输入框
+            CenterX.Text = "";
+            CenterY.Text = "";
+            EStartAngle.Text = "";
+            ESweepAngle.Text = "";
+            A.Text = "";
+            B.Text = "";
         }
     }
 }

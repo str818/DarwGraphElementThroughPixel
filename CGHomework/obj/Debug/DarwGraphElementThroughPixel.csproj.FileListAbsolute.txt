@@ -1,0 +1,9 @@
+E:\Github\CGHomework\CGHomework\bin\Debug\CGHomework.exe.config
+E:\Github\CGHomework\CGHomework\obj\Debug\CGHomework.exe
+E:\Github\CGHomework\CGHomework\obj\Debug\CGHomework.pdb
+E:\Github\CGHomework\CGHomework\bin\Debug\CGHomework.exe
+E:\Github\CGHomework\CGHomework\bin\Debug\CGHomework.pdb
+E:\Github\CGHomework\CGHomework\obj\Debug\DarwGraphElementThroughPixel.csprojResolveAssemblyReference.cache
+E:\Github\CGHomework\CGHomework\obj\Debug\CGHomework.MyForm.resources
+E:\Github\CGHomework\CGHomework\obj\Debug\CGHomework.Properties.Resources.resources
+E:\Github\CGHomework\CGHomework\obj\Debug\DarwGraphElementThroughPixel.csproj.GenerateResource.Cache
