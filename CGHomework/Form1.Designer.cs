@@ -70,21 +70,31 @@
             this.CenterX = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.tabStr = new System.Windows.Forms.TabPage();
-            this.label19 = new System.Windows.Forms.Label();
-            this.PaintPanel = new System.Windows.Forms.Panel();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.Str = new System.Windows.Forms.TextBox();
-            this.DrawStr = new System.Windows.Forms.Button();
             this.StrY = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.StrX = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
+            this.DrawStr = new System.Windows.Forms.Button();
+            this.Str = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tabShadowLine = new System.Windows.Forms.TabPage();
+            this.label24 = new System.Windows.Forms.Label();
+            this.OuterRing = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.PaintPanel = new System.Windows.Forms.Panel();
+            this.InnerRing = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.ShadowLineAngle = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.VerticalH = new System.Windows.Forms.TextBox();
+            this.DrawShadowLine = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.tabLine.SuspendLayout();
             this.tabCircleArc.SuspendLayout();
             this.tabEllipseArc.SuspendLayout();
             this.tabStr.SuspendLayout();
+            this.tabShadowLine.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl
@@ -94,6 +104,7 @@
             this.TabControl.Controls.Add(this.tabCircleArc);
             this.TabControl.Controls.Add(this.tabEllipseArc);
             this.TabControl.Controls.Add(this.tabStr);
+            this.TabControl.Controls.Add(this.tabShadowLine);
             this.TabControl.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Margin = new System.Windows.Forms.Padding(0);
@@ -492,41 +503,6 @@
             this.tabStr.TabIndex = 3;
             this.tabStr.Text = " 文字";
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(18, 21);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(65, 12);
-            this.label19.TabIndex = 12;
-            this.label19.Text = "输入文字：";
-            // 
-            // PaintPanel
-            // 
-            this.PaintPanel.BackColor = System.Drawing.SystemColors.Window;
-            this.PaintPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PaintPanel.Location = new System.Drawing.Point(4, 83);
-            this.PaintPanel.Name = "PaintPanel";
-            this.PaintPanel.Size = new System.Drawing.Size(659, 353);
-            this.PaintPanel.TabIndex = 3;
-            // 
-            // Str
-            // 
-            this.Str.Location = new System.Drawing.Point(84, 17);
-            this.Str.Name = "Str";
-            this.Str.Size = new System.Drawing.Size(90, 21);
-            this.Str.TabIndex = 13;
-            // 
-            // DrawStr
-            // 
-            this.DrawStr.Location = new System.Drawing.Point(540, 12);
-            this.DrawStr.Name = "DrawStr";
-            this.DrawStr.Size = new System.Drawing.Size(70, 30);
-            this.DrawStr.TabIndex = 14;
-            this.DrawStr.Text = "绘 制";
-            this.DrawStr.UseVisualStyleBackColor = true;
-            this.DrawStr.Click += new System.EventHandler(this.DrawStr_Click);
-            // 
             // StrY
             // 
             this.StrY.Location = new System.Drawing.Point(311, 17);
@@ -568,6 +544,134 @@
             this.label22.TabIndex = 15;
             this.label22.Text = "文字位置：";
             // 
+            // DrawStr
+            // 
+            this.DrawStr.Location = new System.Drawing.Point(540, 12);
+            this.DrawStr.Name = "DrawStr";
+            this.DrawStr.Size = new System.Drawing.Size(70, 30);
+            this.DrawStr.TabIndex = 14;
+            this.DrawStr.Text = "绘 制";
+            this.DrawStr.UseVisualStyleBackColor = true;
+            this.DrawStr.Click += new System.EventHandler(this.DrawStr_Click);
+            // 
+            // Str
+            // 
+            this.Str.Location = new System.Drawing.Point(84, 17);
+            this.Str.Name = "Str";
+            this.Str.Size = new System.Drawing.Size(90, 21);
+            this.Str.TabIndex = 13;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(18, 21);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(65, 12);
+            this.label19.TabIndex = 12;
+            this.label19.Text = "输入文字：";
+            // 
+            // tabShadowLine
+            // 
+            this.tabShadowLine.BackColor = System.Drawing.Color.Silver;
+            this.tabShadowLine.Controls.Add(this.DrawShadowLine);
+            this.tabShadowLine.Controls.Add(this.VerticalH);
+            this.tabShadowLine.Controls.Add(this.label26);
+            this.tabShadowLine.Controls.Add(this.ShadowLineAngle);
+            this.tabShadowLine.Controls.Add(this.label25);
+            this.tabShadowLine.Controls.Add(this.InnerRing);
+            this.tabShadowLine.Controls.Add(this.label24);
+            this.tabShadowLine.Controls.Add(this.OuterRing);
+            this.tabShadowLine.Controls.Add(this.label23);
+            this.tabShadowLine.Location = new System.Drawing.Point(4, 22);
+            this.tabShadowLine.Name = "tabShadowLine";
+            this.tabShadowLine.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShadowLine.Size = new System.Drawing.Size(659, 54);
+            this.tabShadowLine.TabIndex = 4;
+            this.tabShadowLine.Text = "多边形阴影线填充";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(165, 19);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(65, 12);
+            this.label24.TabIndex = 15;
+            this.label24.Text = "内环点集：";
+            // 
+            // OuterRing
+            // 
+            this.OuterRing.Location = new System.Drawing.Point(69, 16);
+            this.OuterRing.Name = "OuterRing";
+            this.OuterRing.Size = new System.Drawing.Size(90, 21);
+            this.OuterRing.TabIndex = 14;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(8, 19);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(65, 12);
+            this.label23.TabIndex = 2;
+            this.label23.Text = "外环点集：";
+            // 
+            // PaintPanel
+            // 
+            this.PaintPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.PaintPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PaintPanel.Location = new System.Drawing.Point(4, 83);
+            this.PaintPanel.Name = "PaintPanel";
+            this.PaintPanel.Size = new System.Drawing.Size(659, 353);
+            this.PaintPanel.TabIndex = 3;
+            // 
+            // InnerRing
+            // 
+            this.InnerRing.Location = new System.Drawing.Point(225, 16);
+            this.InnerRing.Name = "InnerRing";
+            this.InnerRing.Size = new System.Drawing.Size(90, 21);
+            this.InnerRing.TabIndex = 16;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(321, 21);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(41, 12);
+            this.label25.TabIndex = 17;
+            this.label25.Text = "夹角：";
+            // 
+            // ShadowLineAngle
+            // 
+            this.ShadowLineAngle.Location = new System.Drawing.Point(359, 17);
+            this.ShadowLineAngle.Name = "ShadowLineAngle";
+            this.ShadowLineAngle.Size = new System.Drawing.Size(27, 21);
+            this.ShadowLineAngle.TabIndex = 18;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(392, 21);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(65, 12);
+            this.label26.TabIndex = 19;
+            this.label26.Text = "垂直间距：";
+            // 
+            // VerticalH
+            // 
+            this.VerticalH.Location = new System.Drawing.Point(455, 17);
+            this.VerticalH.Name = "VerticalH";
+            this.VerticalH.Size = new System.Drawing.Size(27, 21);
+            this.VerticalH.TabIndex = 20;
+            // 
+            // DrawShadowLine
+            // 
+            this.DrawShadowLine.Location = new System.Drawing.Point(540, 12);
+            this.DrawShadowLine.Name = "DrawShadowLine";
+            this.DrawShadowLine.Size = new System.Drawing.Size(70, 30);
+            this.DrawShadowLine.TabIndex = 21;
+            this.DrawShadowLine.Text = "绘 制";
+            this.DrawShadowLine.UseVisualStyleBackColor = true;
+            this.DrawShadowLine.Click += new System.EventHandler(this.DrawShadowLine_Click);
+            // 
             // MyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -586,6 +690,8 @@
             this.tabEllipseArc.PerformLayout();
             this.tabStr.ResumeLayout(false);
             this.tabStr.PerformLayout();
+            this.tabShadowLine.ResumeLayout(false);
+            this.tabShadowLine.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -608,7 +714,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button DrwaLineButton;
         private System.Windows.Forms.Panel PaintPanel;
-        private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox ArcY;
         private System.Windows.Forms.Label label8;
@@ -644,6 +749,16 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button DrawStr;
         private System.Windows.Forms.TextBox Str;
+        private System.Windows.Forms.TabPage tabShadowLine;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox OuterRing;
+        private System.Windows.Forms.TextBox InnerRing;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox ShadowLineAngle;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox VerticalH;
+        private System.Windows.Forms.Button DrawShadowLine;
     }
 }
 

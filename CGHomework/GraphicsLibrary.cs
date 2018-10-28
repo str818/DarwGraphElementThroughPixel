@@ -200,9 +200,138 @@ namespace CGHomework
                     }
                 }
             }
-
             fsHzk16.Close();
+        }
 
+        //绘制多边形阴影线
+        public void DrawShadowLine(Point[] OuterPoint, Point[] InnerPoint, int angle, int h)
+        {
+            //绘制多边形外环与内环轮廓
+            DrawPolygon(OuterPoint);
+            DrawPolygon(InnerPoint);
+
+            //各棱两边端点按阴影线斜率引线产生的截距数组
+            Point[] outerIntercept = new Point[OuterPoint.Length];
+            Point[] innerIntercept = new Point[InnerPoint.Length];
+
+            //初始化外环每条棱边的截距
+            double k = Math.Tan(angle * Math.PI / 180);//阴影线斜率
+            initIntercept(OuterPoint, outerIntercept, k);
+            initIntercept(InnerPoint, innerIntercept, k);
+
+            //计算出最大截距与最小截距
+            double minIntercept = double.MaxValue;
+            double maxIntercept = double.MinValue;
+            for(int i = 0; i< outerIntercept.Length; i++)
+            {
+                if (outerIntercept[i].x < minIntercept) minIntercept = outerIntercept[i].x;
+                if (outerIntercept[i].y > maxIntercept) maxIntercept = outerIntercept[i].y; 
+            }
+
+            //计算第一条阴影线的截距
+            double deltaB = h / Math.Abs(Math.Cos(angle * Math.PI / 180));
+            double firstLineIntercept = minIntercept + deltaB;
+
+            for(double i = firstLineIntercept; i < maxIntercept; i += deltaB)
+            {
+                //交点数组
+                List<Point> intersection = new List<Point>();
+
+                //计算与外环的交点
+                for(int j = 0; j < outerIntercept.Length; j++)
+                {
+                    double x = outerIntercept[j].x;
+                    double y = outerIntercept[j].y;
+                    if(i >= x && i < y)
+                    {
+                        //两个端点的位置
+                        double pX = OuterPoint[j].x;
+                        double pY = OuterPoint[j].y;
+                        double qX = OuterPoint[(j + 1) % OuterPoint.Length].x;
+                        double qY = OuterPoint[(j + 1) % OuterPoint.Length].y;
+
+                        double ix = (pX * qY - pY * qX + i * (qX - pX)) / ((qY - pY) - k * (qX - pX));
+                        double iy = k * ix + i;
+
+                        intersection.Add(new Point(ix,iy));
+                    }
+                }
+
+                //计算与内环的交点
+                for (int j = 0; j < innerIntercept.Length; j++)
+                {
+                    double x = innerIntercept[j].x;
+                    double y = innerIntercept[j].y;
+                    if (i >= x && i < y)
+                    {
+                        //两个端点的位置
+                        double pX = InnerPoint[j].x;
+                        double pY = InnerPoint[j].y;
+                        double qX = InnerPoint[(j + 1) % InnerPoint.Length].x;
+                        double qY = InnerPoint[(j + 1) % InnerPoint.Length].y;
+
+                        double ix = (pX * qY - pY * qX + i * (qX - pX)) / ((qY - pY) - k * (qX - pX));
+                        double iy = k * ix + i;
+
+                        intersection.Add(new Point(ix, iy));
+                    }
+                }
+
+                //将交点列表按X值升序排列
+                for(int j = 0; j < intersection.Count; j++)
+                {
+                    for(int q = j + 1; q < intersection.Count; q++ )
+                    {
+                        if (intersection[j].x > intersection[q].x)
+                        {
+                            Point temp = intersection[j];
+                            intersection[j] = intersection[q];
+                            intersection[q] = temp;
+                        }
+                    }
+                }
+
+                //产生从偶数点到奇数点的线段
+                for(int j = 0; j < intersection.Count; j += 2)
+                {
+                    DrawLineDDA((int)intersection[j].x, (int)intersection[j].y, (int)intersection[j + 1].x, (int)intersection[j + 1].y, 1);
+                }
+            }
+
+        }
+
+        //初始化截距
+        public void initIntercept(Point[] orignialArray,Point[] intercept,double k)
+        {
+            for (int i = 0; i < orignialArray.Length; i++)
+            {
+                Point startP = orignialArray[i];       //起始点
+                Point endP = orignialArray[(i + 1) % orignialArray.Length];//终止点
+
+                double bs = startP.y - k * startP.x;
+                double bq = endP.y - k * endP.x;
+
+                //小值作为x
+                if (bs >= bq)
+                {
+                    intercept[i] = new Point(bq, bs);
+                }
+                else
+                {
+                    intercept[i] = new Point(bs, bq);
+                }
+            }
+        }
+
+        //绘制多边形
+        public void DrawPolygon(Point[] ArrayPoint)
+        {
+            for (int i = 0; i < ArrayPoint.Length; i++)
+            {
+                Point startPoint = ArrayPoint[i];
+                Point endPoint = ArrayPoint[(i + 1) % ArrayPoint.Length];
+                DrawLineDDA((int)startPoint.x, (int)startPoint.y, (int)endPoint.x, (int)endPoint.y, 1);
+            }
         }
 
         //绘制像素点
@@ -214,5 +343,17 @@ namespace CGHomework
         [DllImport("Gdi32.dll ")]
         public static extern int SetPixel(IntPtr hDC, int x, int y, int color);
 
+    }
+
+
+    //点
+    public class Point
+    {
+        public double x, y;
+        public Point(double x, double y)
+        {
+            this.x = x;
+            this.y = y;
+        }
     }
 }

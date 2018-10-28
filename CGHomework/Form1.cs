@@ -22,18 +22,25 @@ namespace CGHomework
             InitializeComponent();
             Graphics g = PaintPanel.CreateGraphics();
             gl = new GraphicsLibrary(g.GetHdc());//new GraphicsLibrary(e.Graphics.GetHdc());
- 
+            String s = "";
+            Console.WriteLine(s.Split(',').Length);
+
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
         }
 
         //直线绘制按钮
         public void button1_Click(object sender, EventArgs e)
         {
+            //输入检测
+            if (LineSX.Text.ToString().Equals("") ||
+               LineSY.Text.ToString().Equals("") ||
+               LineEX.Text.ToString().Equals("") ||
+               LineEY.Text.ToString().Equals("")) return;
+
             //获取直线两端端点
             int xStart = int.Parse(LineSX.Text.ToString());
             int yStart = int.Parse(LineSY.Text.ToString());
@@ -53,6 +60,13 @@ namespace CGHomework
         //圆弧绘制按钮
         private void DrawArcButton_Click(object sender, EventArgs e)
         {
+            //输入检测
+            if (ArcX.Text.ToString().Equals("") ||
+               ArcY.Text.ToString().Equals("") ||
+               StartAngle.Text.ToString().Equals("") ||
+               SweepAngle.Text.ToString().Equals("") ||
+               Radius.Text.ToString().Equals("")) return;
+
             //获取圆弧数据
             int xCenter = int.Parse(ArcX.Text.ToString());
             int yCenter = int.Parse(ArcY.Text.ToString());
@@ -74,6 +88,14 @@ namespace CGHomework
         //椭圆弧绘制按钮
         private void DrawEllispArc_Click(object sender, EventArgs e)
         {
+            //输入检测
+            if (CenterX.Text.ToString().Equals("") ||
+               CenterY.Text.ToString().Equals("") ||
+               EStartAngle.Text.ToString().Equals("") ||
+               ESweepAngle.Text.ToString().Equals("") ||
+               A.Text.ToString().Equals("") ||
+               B.Text.ToString().Equals("")) return;
+
             //获取椭圆弧数据
             int xCenter = int.Parse(CenterX.Text.ToString());
             int yCenter = int.Parse(CenterY.Text.ToString());
@@ -97,6 +119,11 @@ namespace CGHomework
         //文字绘制
         private void DrawStr_Click(object sender, EventArgs e)
         {
+            //输入检测
+            if (Str.Text.ToString().Equals("") ||
+               StrX.Text.ToString().Equals("") ||
+               StrY.Text.ToString().Equals("")) return;
+
             //获取文字数据
             String s = Str.Text;
             int x = int.Parse(StrX.Text.ToString());
@@ -109,7 +136,49 @@ namespace CGHomework
             Str.Text = "";
             StrX.Text = "";
             StrY.Text = "";
+        }
 
+        //绘制多边形阴影填充
+        private void DrawShadowLine_Click(object sender, EventArgs e)
+        {
+            //输入检测
+            if (OuterRing.Text.ToString().Equals("") ||
+               ShadowLineAngle.Text.ToString().Equals("") ||
+               VerticalH.Text.ToString().Equals("")) return;
+
+            //获取外环点集
+            String[] outerPointString = OuterRing.Text.ToString().Split(',');
+            Point[] outerPoint = new Point[outerPointString.Length];
+            for (int i = 0;i < outerPointString.Length; i++)
+            {
+                String[] temp = outerPointString[i].Split(' ');
+                outerPoint[i] = new Point(int.Parse(temp[0]), int.Parse(temp[1]));
+            }
+
+            //获取内环点集
+            String[] innerPointString = InnerRing.Text.ToString().Split(',');
+            Point[] innerPoint = new Point[innerPointString.Length];
+            if (InnerRing.Text.Equals("")) innerPoint = new Point[0];
+            for (int i = 0; i < innerPoint.Length; i++)
+            {
+                String[] temp = innerPointString[i].Split(' ');
+                innerPoint[i] = new Point(int.Parse(temp[0]), int.Parse(temp[1]));
+            }
+
+            //获取阴影线角度
+            int angle = int.Parse(ShadowLineAngle.Text);
+
+            //获取垂直间距
+            int h = int.Parse(VerticalH.Text);
+
+            //绘制多边形阴影线
+            gl.DrawShadowLine(outerPoint, innerPoint, angle, h);
+
+            //清空输入框
+            OuterRing.Text = "";
+            InnerRing.Text = "";
+            ShadowLineAngle.Text = "";
+            VerticalH.Text = "";
         }
     }
 }
