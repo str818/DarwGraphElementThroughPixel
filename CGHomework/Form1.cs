@@ -17,13 +17,14 @@ namespace CGHomework
         //图形库
         public GraphicsLibrary gl;
 
+        //填充多边形的颜色
+        public Color color;
+
         public MyForm()
         {
             InitializeComponent();
             Graphics g = PaintPanel.CreateGraphics();
             gl = new GraphicsLibrary(g.GetHdc());//new GraphicsLibrary(e.Graphics.GetHdc());
-            String s = "";
-            Console.WriteLine(s.Split(',').Length);
 
         }
 
@@ -48,7 +49,7 @@ namespace CGHomework
             int yEnd = int.Parse(LineEY.Text.ToString());
 
             //绘制直线
-            gl.DrawLineDDA(xStart, yStart, xEnd, yEnd, 1);
+            gl.DrawLineDDA(xStart, yStart, xEnd, yEnd, 1, 0);
 
             //清空输入框
             LineSY.Text = "";
@@ -179,6 +180,37 @@ namespace CGHomework
             InnerRing.Text = "";
             ShadowLineAngle.Text = "";
             VerticalH.Text = "";
+        }
+
+        //多边形区域颜色填充
+        private void DrawPolygonFillingColor_Click(object sender, EventArgs e)
+        {
+            //输入检测
+            if (PolygonPoints.Text.ToString().Equals("")) return;
+
+            //获取多边形点集
+            String[] pointString = PolygonPoints.Text.ToString().Split(',');
+            Point[] point = new Point[pointString.Length];
+            for (int i = 0; i < pointString.Length; i++)
+            {
+                String[] temp = pointString[i].Split(' ');
+                point[i] = new Point(int.Parse(temp[0]), int.Parse(temp[1]));
+            }
+
+            //绘制多边形颜色填充
+            gl.DrawPolygonColorFilling(point,ColorTranslator.ToWin32(Color.Green));
+
+            PolygonPoints.Text = "";
+
+        }
+
+        //选择颜色
+        private void SelectColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                color = colorDialog1.Color;
+            }
         }
     }
 }

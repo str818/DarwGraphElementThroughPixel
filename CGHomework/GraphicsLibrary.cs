@@ -18,7 +18,7 @@ namespace CGHomework
         }
         
         //绘制线段_DDA算法
-        public void DrawLineDDA(int xStart, int yStart, int xEnd, int yEnd, int lineWidth)
+        public void DrawLineDDA(int xStart, int yStart, int xEnd, int yEnd, int lineWidth,int color)
         {
             int dx = xEnd - xStart, dy = yEnd - yStart;
            
@@ -29,31 +29,30 @@ namespace CGHomework
 
             float x = xStart, y = yStart;
             //setPixel((int)Math.Round(x), (int)Math.Round(y));
-            DrawLinePixel((int)Math.Round(x), (int)Math.Round(y), lineWidth);
+            DrawLinePixel((int)Math.Round(x), (int)Math.Round(y), lineWidth,color);
             for (int i = 0; i < steps; i++)
             {
                 x += xIncrement;
                 y += yIncrement;
                 //setPixel((int)Math.Round(x), (int)Math.Round(y));
-                DrawLinePixel((int)Math.Round(x), (int)Math.Round(y), lineWidth);
+                DrawLinePixel((int)Math.Round(x), (int)Math.Round(y), lineWidth,color);
             }
         }
 
         //绘制线宽
-        public void DrawLinePixel(int x, int y, int lineWidth)
+        public void DrawLinePixel(int x, int y, int lineWidth,int color)
         {
             for(int i = 0; i < lineWidth; i++)
             {
-                setPixel(x + i, y);
-                setPixel(x - i, y);
+                setPixel(x + i, y,color);
+                setPixel(x - i, y,color);
             }
         }
 
         //绘制圆_Bresenham算法
         public void DrawCircleBresenham(int centerX, int centerY, int r)
         {
-            //int[][] array = new int[][] {() };
-            setPixel(centerX, centerY);
+            setPixel(centerX, centerY,0);
 
             int x = 0;
             int y = r;
@@ -79,14 +78,14 @@ namespace CGHomework
         public void CirclePlot(int centerX, int centerY, int x, int y)
         {
             
-            setPixel(x + centerX, y + centerY); // 4
-            setPixel(-x + centerX, y + centerY);// 5
-            setPixel(-x + centerX, -y + centerY);// 8
-            setPixel(x + centerX, -y + centerY); // 1
-            setPixel(y + centerX, x + centerY);// 3
-            setPixel(-y + centerX, x + centerY);// 6
-            setPixel(-y + centerX, -x + centerY);// 7
-            setPixel(y + centerX, -x + centerY);// 2
+            setPixel(x + centerX, y + centerY,0); // 4
+            setPixel(-x + centerX, y + centerY,0);// 5
+            setPixel(-x + centerX, -y + centerY,0);// 8
+            setPixel(x + centerX, -y + centerY,0); // 1
+            setPixel(y + centerX, x + centerY,0);// 3
+            setPixel(-y + centerX, x + centerY,0);// 6
+            setPixel(-y + centerX, -x + centerY,0);// 7
+            setPixel(y + centerX, -x + centerY,0);// 2
         }
 
         //绘制圆弧
@@ -100,7 +99,7 @@ namespace CGHomework
             {
                 int x = (int)(centerX + r * Math.Cos(i - Math.PI / 2));
                 int y = (int)(centerY + r * Math.Sin(i - Math.PI / 2));
-                setPixel(x, y);
+                setPixel(x, y,0);
             }
         }
 
@@ -148,10 +147,10 @@ namespace CGHomework
         //画椭圆时绘制对称点
         public void EllipsePlot(int xc,int yc,int x,int y)
         {
-            setPixel(xc + x, yc + y);
-            setPixel(xc - x, yc + y);
-            setPixel(xc + x, yc - y);
-            setPixel(xc - x, yc - y);
+            setPixel(xc + x, yc + y,0);
+            setPixel(xc - x, yc + y,0);
+            setPixel(xc + x, yc - y,0);
+            setPixel(xc - x, yc - y,0);
         }
 
         //绘制椭圆弧
@@ -165,7 +164,7 @@ namespace CGHomework
             {
                 int x = (int)(centerX + a * Math.Cos(i - Math.PI / 2));
                 int y = (int)(centerY + b * Math.Sin(i - Math.PI / 2));
-                setPixel(x, y);
+                setPixel(x, y,0);
             }
 
         }
@@ -194,7 +193,7 @@ namespace CGHomework
                             int flag = bMsg[k * 2 + j] & key[d%8];
                             if (flag != 0)
                             {
-                                setPixel((j * 8) + d + i * 16 + x, k + y);
+                                setPixel((j * 8) + d + i * 16 + x, k + y,0);
                             }  
                         }
                     }
@@ -294,9 +293,170 @@ namespace CGHomework
                 //产生从偶数点到奇数点的线段
                 for(int j = 0; j < intersection.Count; j += 2)
                 {
-                    DrawLineDDA((int)intersection[j].x, (int)intersection[j].y, (int)intersection[j + 1].x, (int)intersection[j + 1].y, 1);
+                    DrawLineDDA((int)intersection[j].x, (int)intersection[j].y, (int)intersection[j + 1].x, (int)intersection[j + 1].y, 1,0);
                 }
             }
+
+        }
+
+        //多边形区域颜色填充
+        public void DrawPolygonColorFilling(Point[] pointArray,int color)
+        {
+            //-----建立边表-ET-----
+
+            //计算多边形边的Y值范围
+            int minY = int.MaxValue;
+            int maxY = int.MinValue;
+            for(int i = 0; i < pointArray.Length; i++)
+            {
+                Point sP = pointArray[i];
+                if (sP.y > maxY) maxY = (int)sP.y;
+                if (sP.y < minY) minY = (int)sP.y;
+            }
+
+            //初始化边表
+            Table[] ET = new Table[maxY - minY + 1];
+            for(int i = 0; i < pointArray.Length; i++)
+            {
+                Point sP = pointArray[i];
+                Point eP = pointArray[(i + 1) % pointArray.Length];
+                Table temp = new Table();
+                //边的最大Y值与下端点X坐标
+                int downY;//下端点纵坐标
+                if (sP.y < eP.y)
+                {
+                    temp.yMax = (int)eP.y;
+                    temp.x = (int)sP.x;
+                    downY = (int)sP.y;
+                } else if (sP.y > eP.y)
+                {
+                    temp.yMax = (int)sP.y;
+                    temp.x = (int)eP.x;
+                    downY = (int)eP.y;
+                } else continue;
+
+                //斜率
+                double k = (sP.y - eP.y) / (sP.x - eP.x);
+                temp.deltaX = 1 / k;
+                temp.next = null;
+
+                //放入边表
+                Table index = ET[downY - minY];
+                if (index == null)
+                {
+                    ET[downY - minY] = temp;
+                    //Console.WriteLine("放入边表：" + i);
+                }
+                else
+                {
+                    while (index.next != null) index = index.next;
+                    index.next = temp;
+                    //Console.WriteLine("加入边表：" + i);
+                }
+            }
+
+
+            //活动边链表AET
+            Table[] AET = new Table[maxY - minY + 1];
+            //-----循环迭代-----
+            for (int i = 0; i < maxY - minY +1; i++)
+            {
+
+                //若扫描线对应的ET中非空，从ET中取出复制到AET中
+                
+                if (ET[i] != null)
+                {
+                    Table tempET = ET[i];
+                    if (AET[i] == null)//当AET[i]为空（第一次）
+                    {
+                        AET[i] = new Table(tempET);
+                    }else
+                    {   //将ET[i]中的边链接到AET[i]后
+                        
+                        Table tempAET = AET[i];
+                        while (tempAET.next != null) tempAET = tempAET.next;
+                        while (tempET != null)
+                        {
+                            tempAET.next = new Table(tempET);
+                            tempAET = tempAET.next;
+                            tempET = tempET.next;
+                        }
+                    }           
+                    
+                    //根据x对各边增序排列
+                    Table p = AET[i];
+                    Table q = AET[i];
+                    if(p.next != null)
+                    {
+                        while (p.next != null)
+                        {
+                            for(;q.next != null; q = q.next)
+                            {
+                                if (q.x > q.next.x)
+                                {
+                                    //交换结点
+                                    Table temp = new Table(q);
+                                    q.x = q.next.x;
+                                    q.yMax = q.next.yMax;
+                                    q.deltaX = q.next.deltaX;
+                                    q.next.x = temp.x;
+                                    q.next.yMax = temp.yMax;
+                                    q.next.deltaX = temp.deltaX;
+                                }
+                            }
+                            p = p.next;
+                        }
+                        
+                    }
+                }
+
+                if (AET[i] != null)
+                {
+                    //对交点之间的区域进行着色
+                    Table temp = AET[i];
+                    while (temp != null && temp.next != null)
+                    {
+                        DrawLineDDA((int)temp.x, i + minY, (int)temp.next.x, i + minY, 1,color);
+                        temp = temp.next.next;
+                    }
+
+                    //超过界限退出循环
+                    if (i + 1 >= maxY - minY + 1) break;
+                    //若首条边完成任务，则删除
+                    while (AET[i] != null && AET[i].yMax == i + minY + 1)
+                    {
+                        Console.WriteLine("首边删除:" + AET[i].yMax + " " + i);
+                        AET[i] = AET[i].next;
+                    }
+
+                    if (AET[i] == null) break;
+                    else AET[i].x += AET[i].deltaX;
+                    
+                    //后面的边完成任务，则删除
+                    temp = AET[i].next;
+                    Table last = AET[i];
+                    while (temp != null)
+                    {
+                       
+                        if (temp.yMax == i + minY)
+                        {
+                            Console.WriteLine("删除:" + temp.yMax + " " + i);
+                            last.next = temp.next;
+                            temp = temp.next;
+                            continue;
+                        }
+                        else
+                        {
+                            temp.x += temp.deltaX;
+                        }
+                        temp = temp.next;
+                        last = temp;
+                    }
+                    AET[i + 1] = AET[i];
+                }
+            }
+
+            DrawPolygon(pointArray);
 
         }
 
@@ -330,14 +490,14 @@ namespace CGHomework
             {
                 Point startPoint = ArrayPoint[i];
                 Point endPoint = ArrayPoint[(i + 1) % ArrayPoint.Length];
-                DrawLineDDA((int)startPoint.x, (int)startPoint.y, (int)endPoint.x, (int)endPoint.y, 1);
+                DrawLineDDA((int)startPoint.x, (int)startPoint.y, (int)endPoint.x, (int)endPoint.y, 1, 0);
             }
         }
 
         //绘制像素点
-        public void setPixel(int x, int y)
+        public void setPixel(int x, int y,int color)
         {
-            SetPixel(hDC, x, y, 0);
+            SetPixel(hDC, x, y, color);
         }
 
         [DllImport("Gdi32.dll ")]
@@ -355,5 +515,23 @@ namespace CGHomework
             this.x = x;
             this.y = y;
         }
+    }
+    
+    //链表结点-用于表示边的分类表ET 与 边的活动边链表AEL
+    public class Table
+    {
+        public int yMax;//该棱边的上端点的y坐标
+        public double x;//ET-该棱边的下端点x坐标   AEL-该棱边与当前扫描线交点的x坐标
+        public double deltaX;//该棱边斜率的倒数
+        public Table next;//指向下一条棱边
+
+        public Table(Table temp)
+        {
+            yMax = temp.yMax;
+            x = temp.x;
+            deltaX = temp.deltaX;
+            next = temp.next;
+        }
+        public Table() { }
     }
 }

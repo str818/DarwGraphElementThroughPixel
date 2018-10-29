@@ -79,22 +79,29 @@
             this.Str = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tabShadowLine = new System.Windows.Forms.TabPage();
+            this.DrawShadowLine = new System.Windows.Forms.Button();
+            this.VerticalH = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.ShadowLineAngle = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.InnerRing = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.OuterRing = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
+            this.tabColorFilling = new System.Windows.Forms.TabPage();
             this.PaintPanel = new System.Windows.Forms.Panel();
-            this.InnerRing = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.ShadowLineAngle = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.VerticalH = new System.Windows.Forms.TextBox();
-            this.DrawShadowLine = new System.Windows.Forms.Button();
+            this.label27 = new System.Windows.Forms.Label();
+            this.PolygonPoints = new System.Windows.Forms.TextBox();
+            this.DrawPolygonFillingColor = new System.Windows.Forms.Button();
+            this.SelectColor = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.TabControl.SuspendLayout();
             this.tabLine.SuspendLayout();
             this.tabCircleArc.SuspendLayout();
             this.tabEllipseArc.SuspendLayout();
             this.tabStr.SuspendLayout();
             this.tabShadowLine.SuspendLayout();
+            this.tabColorFilling.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl
@@ -105,6 +112,7 @@
             this.TabControl.Controls.Add(this.tabEllipseArc);
             this.TabControl.Controls.Add(this.tabStr);
             this.TabControl.Controls.Add(this.tabShadowLine);
+            this.TabControl.Controls.Add(this.tabColorFilling);
             this.TabControl.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Margin = new System.Windows.Forms.Padding(0);
@@ -589,6 +597,55 @@
             this.tabShadowLine.TabIndex = 4;
             this.tabShadowLine.Text = "多边形阴影线填充";
             // 
+            // DrawShadowLine
+            // 
+            this.DrawShadowLine.Location = new System.Drawing.Point(540, 12);
+            this.DrawShadowLine.Name = "DrawShadowLine";
+            this.DrawShadowLine.Size = new System.Drawing.Size(70, 30);
+            this.DrawShadowLine.TabIndex = 21;
+            this.DrawShadowLine.Text = "绘 制";
+            this.DrawShadowLine.UseVisualStyleBackColor = true;
+            this.DrawShadowLine.Click += new System.EventHandler(this.DrawShadowLine_Click);
+            // 
+            // VerticalH
+            // 
+            this.VerticalH.Location = new System.Drawing.Point(455, 17);
+            this.VerticalH.Name = "VerticalH";
+            this.VerticalH.Size = new System.Drawing.Size(27, 21);
+            this.VerticalH.TabIndex = 20;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(392, 21);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(65, 12);
+            this.label26.TabIndex = 19;
+            this.label26.Text = "垂直间距：";
+            // 
+            // ShadowLineAngle
+            // 
+            this.ShadowLineAngle.Location = new System.Drawing.Point(359, 17);
+            this.ShadowLineAngle.Name = "ShadowLineAngle";
+            this.ShadowLineAngle.Size = new System.Drawing.Size(27, 21);
+            this.ShadowLineAngle.TabIndex = 18;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(321, 21);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(41, 12);
+            this.label25.TabIndex = 17;
+            this.label25.Text = "夹角：";
+            // 
+            // InnerRing
+            // 
+            this.InnerRing.Location = new System.Drawing.Point(225, 16);
+            this.InnerRing.Name = "InnerRing";
+            this.InnerRing.Size = new System.Drawing.Size(90, 21);
+            this.InnerRing.TabIndex = 16;
+            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -614,6 +671,20 @@
             this.label23.TabIndex = 2;
             this.label23.Text = "外环点集：";
             // 
+            // tabColorFilling
+            // 
+            this.tabColorFilling.BackColor = System.Drawing.Color.Silver;
+            this.tabColorFilling.Controls.Add(this.SelectColor);
+            this.tabColorFilling.Controls.Add(this.DrawPolygonFillingColor);
+            this.tabColorFilling.Controls.Add(this.PolygonPoints);
+            this.tabColorFilling.Controls.Add(this.label27);
+            this.tabColorFilling.Location = new System.Drawing.Point(4, 22);
+            this.tabColorFilling.Name = "tabColorFilling";
+            this.tabColorFilling.Padding = new System.Windows.Forms.Padding(3);
+            this.tabColorFilling.Size = new System.Drawing.Size(659, 54);
+            this.tabColorFilling.TabIndex = 5;
+            this.tabColorFilling.Text = "多边形颜色填充";
+            // 
             // PaintPanel
             // 
             this.PaintPanel.BackColor = System.Drawing.SystemColors.Window;
@@ -623,54 +694,41 @@
             this.PaintPanel.Size = new System.Drawing.Size(659, 353);
             this.PaintPanel.TabIndex = 3;
             // 
-            // InnerRing
+            // label27
             // 
-            this.InnerRing.Location = new System.Drawing.Point(225, 16);
-            this.InnerRing.Name = "InnerRing";
-            this.InnerRing.Size = new System.Drawing.Size(90, 21);
-            this.InnerRing.TabIndex = 16;
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(17, 21);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(77, 12);
+            this.label27.TabIndex = 3;
+            this.label27.Text = "多边形点集：";
             // 
-            // label25
+            // PolygonPoints
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(321, 21);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(41, 12);
-            this.label25.TabIndex = 17;
-            this.label25.Text = "夹角：";
+            this.PolygonPoints.Location = new System.Drawing.Point(100, 17);
+            this.PolygonPoints.Name = "PolygonPoints";
+            this.PolygonPoints.Size = new System.Drawing.Size(90, 21);
+            this.PolygonPoints.TabIndex = 15;
             // 
-            // ShadowLineAngle
+            // DrawPolygonFillingColor
             // 
-            this.ShadowLineAngle.Location = new System.Drawing.Point(359, 17);
-            this.ShadowLineAngle.Name = "ShadowLineAngle";
-            this.ShadowLineAngle.Size = new System.Drawing.Size(27, 21);
-            this.ShadowLineAngle.TabIndex = 18;
+            this.DrawPolygonFillingColor.Location = new System.Drawing.Point(540, 12);
+            this.DrawPolygonFillingColor.Name = "DrawPolygonFillingColor";
+            this.DrawPolygonFillingColor.Size = new System.Drawing.Size(70, 30);
+            this.DrawPolygonFillingColor.TabIndex = 22;
+            this.DrawPolygonFillingColor.Text = "绘 制";
+            this.DrawPolygonFillingColor.UseVisualStyleBackColor = true;
+            this.DrawPolygonFillingColor.Click += new System.EventHandler(this.DrawPolygonFillingColor_Click);
             // 
-            // label26
+            // SelectColor
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(392, 21);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(65, 12);
-            this.label26.TabIndex = 19;
-            this.label26.Text = "垂直间距：";
-            // 
-            // VerticalH
-            // 
-            this.VerticalH.Location = new System.Drawing.Point(455, 17);
-            this.VerticalH.Name = "VerticalH";
-            this.VerticalH.Size = new System.Drawing.Size(27, 21);
-            this.VerticalH.TabIndex = 20;
-            // 
-            // DrawShadowLine
-            // 
-            this.DrawShadowLine.Location = new System.Drawing.Point(540, 12);
-            this.DrawShadowLine.Name = "DrawShadowLine";
-            this.DrawShadowLine.Size = new System.Drawing.Size(70, 30);
-            this.DrawShadowLine.TabIndex = 21;
-            this.DrawShadowLine.Text = "绘 制";
-            this.DrawShadowLine.UseVisualStyleBackColor = true;
-            this.DrawShadowLine.Click += new System.EventHandler(this.DrawShadowLine_Click);
+            this.SelectColor.Location = new System.Drawing.Point(447, 12);
+            this.SelectColor.Name = "SelectColor";
+            this.SelectColor.Size = new System.Drawing.Size(87, 30);
+            this.SelectColor.TabIndex = 23;
+            this.SelectColor.Text = "选择填充颜色";
+            this.SelectColor.UseVisualStyleBackColor = true;
+            this.SelectColor.Click += new System.EventHandler(this.SelectColor_Click);
             // 
             // MyForm
             // 
@@ -679,6 +737,9 @@
             this.ClientSize = new System.Drawing.Size(669, 441);
             this.Controls.Add(this.PaintPanel);
             this.Controls.Add(this.TabControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MyForm";
             this.Text = "计算机图形学_图元绘制";
             this.TabControl.ResumeLayout(false);
@@ -692,6 +753,8 @@
             this.tabStr.PerformLayout();
             this.tabShadowLine.ResumeLayout(false);
             this.tabShadowLine.PerformLayout();
+            this.tabColorFilling.ResumeLayout(false);
+            this.tabColorFilling.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -759,6 +822,12 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox VerticalH;
         private System.Windows.Forms.Button DrawShadowLine;
+        private System.Windows.Forms.TabPage tabColorFilling;
+        private System.Windows.Forms.Button DrawPolygonFillingColor;
+        private System.Windows.Forms.TextBox PolygonPoints;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button SelectColor;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

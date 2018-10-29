@@ -18,7 +18,8 @@ namespace CGHomework
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MyForm());
-
+            //50 50,50 150,100 100,100 50
+            //100 20,50 20,20 50,20 100,80 70,160 120,160 60
         }
     }
 }
