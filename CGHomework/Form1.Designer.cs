@@ -89,11 +89,11 @@
             this.OuterRing = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.tabColorFilling = new System.Windows.Forms.TabPage();
-            this.PaintPanel = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
-            this.PolygonPoints = new System.Windows.Forms.TextBox();
-            this.DrawPolygonFillingColor = new System.Windows.Forms.Button();
             this.SelectColor = new System.Windows.Forms.Button();
+            this.DrawPolygonFillingColor = new System.Windows.Forms.Button();
+            this.PolygonPoints = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.PaintPanel = new System.Windows.Forms.Panel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.TabControl.SuspendLayout();
             this.tabLine.SuspendLayout();
@@ -685,30 +685,15 @@
             this.tabColorFilling.TabIndex = 5;
             this.tabColorFilling.Text = "多边形颜色填充";
             // 
-            // PaintPanel
+            // SelectColor
             // 
-            this.PaintPanel.BackColor = System.Drawing.SystemColors.Window;
-            this.PaintPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PaintPanel.Location = new System.Drawing.Point(4, 83);
-            this.PaintPanel.Name = "PaintPanel";
-            this.PaintPanel.Size = new System.Drawing.Size(659, 353);
-            this.PaintPanel.TabIndex = 3;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(17, 21);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(77, 12);
-            this.label27.TabIndex = 3;
-            this.label27.Text = "多边形点集：";
-            // 
-            // PolygonPoints
-            // 
-            this.PolygonPoints.Location = new System.Drawing.Point(100, 17);
-            this.PolygonPoints.Name = "PolygonPoints";
-            this.PolygonPoints.Size = new System.Drawing.Size(90, 21);
-            this.PolygonPoints.TabIndex = 15;
+            this.SelectColor.Location = new System.Drawing.Point(447, 12);
+            this.SelectColor.Name = "SelectColor";
+            this.SelectColor.Size = new System.Drawing.Size(87, 30);
+            this.SelectColor.TabIndex = 23;
+            this.SelectColor.Text = "选择填充颜色";
+            this.SelectColor.UseVisualStyleBackColor = true;
+            this.SelectColor.Click += new System.EventHandler(this.SelectColor_Click);
             // 
             // DrawPolygonFillingColor
             // 
@@ -720,15 +705,30 @@
             this.DrawPolygonFillingColor.UseVisualStyleBackColor = true;
             this.DrawPolygonFillingColor.Click += new System.EventHandler(this.DrawPolygonFillingColor_Click);
             // 
-            // SelectColor
+            // PolygonPoints
             // 
-            this.SelectColor.Location = new System.Drawing.Point(447, 12);
-            this.SelectColor.Name = "SelectColor";
-            this.SelectColor.Size = new System.Drawing.Size(87, 30);
-            this.SelectColor.TabIndex = 23;
-            this.SelectColor.Text = "选择填充颜色";
-            this.SelectColor.UseVisualStyleBackColor = true;
-            this.SelectColor.Click += new System.EventHandler(this.SelectColor_Click);
+            this.PolygonPoints.Location = new System.Drawing.Point(100, 17);
+            this.PolygonPoints.Name = "PolygonPoints";
+            this.PolygonPoints.Size = new System.Drawing.Size(90, 21);
+            this.PolygonPoints.TabIndex = 15;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(17, 21);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(77, 12);
+            this.label27.TabIndex = 3;
+            this.label27.Text = "多边形点集：";
+            // 
+            // PaintPanel
+            // 
+            this.PaintPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.PaintPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PaintPanel.Location = new System.Drawing.Point(4, 83);
+            this.PaintPanel.Name = "PaintPanel";
+            this.PaintPanel.Size = new System.Drawing.Size(659, 353);
+            this.PaintPanel.TabIndex = 3;
             // 
             // MyForm
             // 

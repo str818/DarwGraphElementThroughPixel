@@ -20,6 +20,9 @@ namespace CGHomework
         //填充多边形的颜色
         public Color color;
 
+        //绘制列表
+        List<Option> optionList = new List<Option>();
+
         public MyForm()
         {
             InitializeComponent();
@@ -31,6 +34,45 @@ namespace CGHomework
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+
+            for(int i = 0; i<optionList.Count; i++)
+            {
+                Option option = optionList[i];
+                switch (option.option)
+                {
+                    //绘制直线
+                    case Option.DrawOption.DrawLine:
+                        gl.DrawLineDDA((int)option.ParameterList[0], (int)option.ParameterList[1],
+                            (int)option.ParameterList[2], (int)option.ParameterList[3], 1, 0);
+                        break;
+                    //绘制圆弧
+                    case Option.DrawOption.DrawCirArc:
+                        gl.DrawArc((int)option.ParameterList[0], (int)option.ParameterList[1],
+                            (int)option.ParameterList[2], (int)option.ParameterList[3], (int)option.ParameterList[4]);
+                        break;
+                    //绘制椭圆弧
+                    case Option.DrawOption.DrawEllispArc:
+                        gl.DrawEllipseArc((int)option.ParameterList[0], (int)option.ParameterList[1],
+                            (int)option.ParameterList[2], (int)option.ParameterList[3], (int)option.ParameterList[4], 
+                            (int)option.ParameterList[5]);
+                        break;
+                    //绘制文字
+                    case Option.DrawOption.DrawString:
+                        gl.DrawString(option.ParameterList[0].ToString(), (int)option.ParameterList[1],
+                            (int)option.ParameterList[2]);
+                        break;
+                    //绘制多边形阴影
+                    case Option.DrawOption.DrawShadowLine:
+                        gl.DrawShadowLine((Point[])option.ParameterList[0], (Point[])option.ParameterList[1],
+                            (int)option.ParameterList[2], (int)option.ParameterList[3]);
+                        break;
+                    //绘制多边形颜色填充
+                    case Option.DrawOption.DrawFillingColor:
+                        gl.DrawPolygonColorFilling((Point[])option.ParameterList[0], (int)option.ParameterList[1]);
+                        break;
+
+                }
+            }
         }
 
         //直线绘制按钮
@@ -50,6 +92,9 @@ namespace CGHomework
 
             //绘制直线
             gl.DrawLineDDA(xStart, yStart, xEnd, yEnd, 1, 0);
+
+            //加入操作List
+            optionList.Add(new Option(Option.DrawOption.DrawLine, new List<Object> { xStart, yStart, xEnd, yEnd }));
 
             //清空输入框
             LineSY.Text = "";
@@ -77,6 +122,9 @@ namespace CGHomework
 
             //绘制圆弧
             gl.DrawArc(xCenter, yCenter, startAngle, sweepAngle, r);
+
+            //加入操作List
+            optionList.Add(new Option(Option.DrawOption.DrawCirArc, new List<Object> { xCenter, yCenter, startAngle, sweepAngle, r}));
 
             //清空输入框
             ArcX.Text = "";
@@ -108,6 +156,9 @@ namespace CGHomework
             //绘制椭圆弧
             gl.DrawEllipseArc(xCenter, yCenter, a, b, startAngle, sweepAngle);
 
+            //加入操作List
+            optionList.Add(new Option(Option.DrawOption.DrawEllispArc, new List<Object> { xCenter, yCenter, startAngle, sweepAngle, a, b }));
+
             //清空输入框
             CenterX.Text = "";
             CenterY.Text = "";
@@ -132,6 +183,9 @@ namespace CGHomework
 
             //绘制文字
             gl.DrawString(s, x, y);
+
+            //加入操作List
+            optionList.Add(new Option(Option.DrawOption.DrawString, new List<Object> { s, x, y }));
 
             //清空输入框
             Str.Text = "";
@@ -175,6 +229,9 @@ namespace CGHomework
             //绘制多边形阴影线
             gl.DrawShadowLine(outerPoint, innerPoint, angle, h);
 
+            //加入操作List
+            optionList.Add(new Option(Option.DrawOption.DrawShadowLine, new List<Object> { outerPoint, innerPoint, angle, h }));
+
             //清空输入框
             OuterRing.Text = "";
             InnerRing.Text = "";
@@ -200,6 +257,9 @@ namespace CGHomework
             //绘制多边形颜色填充
             gl.DrawPolygonColorFilling(point,ColorTranslator.ToWin32(Color.Green));
 
+            //加入操作List
+            optionList.Add(new Option(Option.DrawOption.DrawFillingColor, new List<Object> { point, ColorTranslator.ToWin32(Color.Green) }));
+
             PolygonPoints.Text = "";
 
         }
@@ -212,5 +272,33 @@ namespace CGHomework
                 color = colorDialog1.Color;
             }
         }
+    }
+
+    //操作类
+    public class Option
+    {
+        //绘制操作类型
+        public enum DrawOption{
+            None,
+            DrawLine,
+            DrawCirArc,
+            DrawEllispArc,
+            DrawString,
+            DrawShadowLine,
+            DrawFillingColor
+        }
+
+        //操作类型
+        public DrawOption option = DrawOption.None;
+
+        //参数类型
+        public List<Object> ParameterList;
+
+        public Option(DrawOption option, List<Object> tempParmeterList)
+        {
+            this.option = option;
+            this.ParameterList = tempParmeterList;
+        }
+
     }
 }
